@@ -44,4 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/btnMakeInvisible"
         tools:text="Toast" />
 
+    <Button
+        android:id="@+id/changeBackgroundBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Change Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDisplayToast" />
+
+    <Button
+        android:id="@+id/changeButtonColorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Change Button Color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeBackgroundBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

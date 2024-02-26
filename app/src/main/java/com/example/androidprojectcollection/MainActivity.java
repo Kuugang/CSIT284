@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     Button btnLayoutExercise;
     Button btnButtonExercise;
-    private static ArrayList<Activity> activities=new ArrayList<Activity>();
+    Button btnCalculator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnLayoutExercise = (Button) findViewById(R.id.btnLayoutExercise);
         btnButtonExercise = (Button) findViewById(R.id.btnButtonExercise);
+        btnCalculator = (Button) findViewById(R.id.btnCalculator);
 
         btnLayoutExercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ButtonExercise.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
                 startActivity(intent);
             }
         });
