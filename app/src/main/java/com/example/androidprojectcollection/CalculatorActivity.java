@@ -9,31 +9,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class CalculatorActivity extends AppCompatActivity {
-    int i;
     ArrayList<Button> numbers = new ArrayList<>();
     ArrayList<Button> operations = new ArrayList<>();
+    Calculator calculator = new Calculator();
+    boolean isDot = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-        calculate();
+        calculator();
     }
 
-
-    public void calculate(){
+    public void calculator(){
         Button clearBtn =  (Button) findViewById(R.id.btnClearAll);
         Button equalBtn =  (Button) findViewById(R.id.btnEqual);
         Button removeBtn =  (Button) findViewById(R.id.btnRemove);
         Button pointBtn =  (Button) findViewById(R.id.btnPoint);
         TextView resultText =  (TextView) findViewById(R.id.txtResult);
         TextView expressionText =  (TextView) findViewById(R.id.txtExpression);
-
-        float value1 = 0;
-        float value2 = 0;
 
         numbers.add( (Button) findViewById(R.id.btnZero));
         numbers.add( (Button) findViewById(R.id.btnOne));
@@ -59,6 +59,16 @@ public class CalculatorActivity extends AppCompatActivity {
                     Button b = (Button) view;
                     String buttonText = b.getText().toString();
                     expressionText.append(buttonText);
+                    try {
+                        float sequentialResult = calculator.calculate("" + expressionText.getText(), true);
+                        if(sequentialResult == (int)sequentialResult){
+                            resultText.setText(String.valueOf((int)sequentialResult));
+                            return;
+                        }
+                        resultText.setText(Float.toString(sequentialResult));
+                    }catch (Exception e){
+                        resultText.setText(e.getMessage());
+                    }
                 }
             });
         }
@@ -66,15 +76,29 @@ public class CalculatorActivity extends AppCompatActivity {
         pointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button b = (Button)view;
+                Button b = (Button) view;
                 String buttonText = b.getText().toString();
-                expressionText.append(buttonText);
+                String current = "" + expressionText.getText();
+                if (current.length() > 0) {
+                    char last = current.charAt(current.length() - 1);
+                    if (last == '.') {
+                        expressionText.setText(current.substring(0, current.length() - 1));
+                    } else if (isDot == true) {
+                        return;
+                    }
+                    expressionText.append(buttonText);
+                    isDot = true;
+                } else {
+                    expressionText.append(buttonText);
+                    isDot = true;
+                }
             }
         });
 
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isDot = false;
                 String current = String.valueOf(expressionText.getText());
                 if(current.equals(""))return;
                 expressionText.setText(current.substring(0, current.length() - 1));
@@ -85,14 +109,12 @@ public class CalculatorActivity extends AppCompatActivity {
             operations.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    isDot = false;
                     Button b = (Button) view;
                     String buttonText = b.getText().toString();
                     String current = "" + expressionText.getText();
-
                     if(current == "") return;
-
                     Character last = current.charAt(current.length() - 1);
-
                     if(last == '+' || last == '-' || last == '*' || last == '/' || last == '%'){
                         current = current.substring(0, current.length() - 1) + buttonText;
                         expressionText.setText(current);
@@ -106,87 +128,27 @@ public class CalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String expression = expressionText.getText() + "";
-                if(expression.equals(""))return;
-                Stack<Float> operands = new Stack<Float>();
-                Stack<Character> operators = new Stack<Character>();
-
-                for(int i = 0; i < expression.length(); i++){
-                    Character current = expression.charAt(i);
-                    if(Character.isDigit(current) || current == '.'){
-                        StringBuilder sb = new StringBuilder();
-                        while(i < expression.length() && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.')){
-                            sb.append(expression.charAt(i));
-                            i++;
-                        }
-                        i--;
-                        operands.push(Float.parseFloat(sb.toString()));
-                    }else{
-                        while(!operators.isEmpty() && precedence(operators.peek()) >= precedence(current)){
-                            evaluate(operands, operators);
-                        }
-                        operators.push(current);
+                isDot = false;
+                try {
+                    float result = calculator.calculate(expression, false);
+                    if(result == (int) result){
+                        resultText.setText(String.valueOf((int)result));
+                        return;
                     }
+                    resultText.setText(Float.toString(result));
+                } catch (Exception e) {
+                    resultText.setText(e.getMessage());
                 }
-                while(!operands.isEmpty() && !operators.isEmpty()){
-                    evaluate(operands, operators);
-                }
-
-                resultText.setText(Float.toString(operands.pop()));
             }
         });
 
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isDot = false;
                 expressionText.setText("");
                 resultText.setText("0");
             }
         });
     }
-
-
-    public void evaluate(Stack<Float>operands, Stack<Character>operators){
-        Character operator = operators.pop();
-        Float value2 = operands.pop();
-        Float value1 = operands.pop();
-        float result = 0;
-        switch(operator){
-            case '+':
-                result = value1 + value2;
-                break;
-            case '-':
-                result = value1 - value2;
-                break;
-            case '*':
-                result = value1 * value2;
-                break;
-            case '/':
-                if(value2 == 0)throw new ArithmeticException("Division by zero");
-                result = value1 / value2;
-                break;
-            case '%':
-                result = value1 % value2;
-                break;
-
-        }
-        operands.push(result);
-    }
-
-    public int precedence(Character symbol){
-        switch(symbol){
-            case '^':
-                return 3;
-            case '*':
-            case '/':
-            case '%':
-                return 2;
-            case '+':
-            case '-':
-                    return 1;
-            default:
-                break;
-        }
-        return 0;
-    }
-
 }

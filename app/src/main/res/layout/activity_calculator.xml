@@ -43,28 +43,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="%" />
+                android:text="%"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnClearAll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Clear All" />
+                android:text="Clear All"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnRemove"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="←" />
+                android:text="Remove"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnDivide"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="/" />
+                android:text="/"
+                app:cornerRadius="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,28 +82,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="7" />
+                android:text="7"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnEighth"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="8" />
+                android:text="8"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnNine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="9" />
+                android:text="9"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnMultiply"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="*" />
+                android:text="*"
+                app:cornerRadius="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,28 +121,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="4" />
+                android:text="4"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnFive"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="5" />
+                android:text="5"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnSix"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="6" />
+                android:text="6"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnSubtract"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="-" />
+                android:text="-"
+                app:cornerRadius="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,28 +160,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="1" />
+                android:text="1"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="2" />
+                android:text="2"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnThree"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="3" />
+                android:text="3"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="+" />
+                android:text="+"
+                app:cornerRadius="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -183,21 +199,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="0" />
+                android:text="0"
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnPoint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="." />
+                android:text="."
+                app:cornerRadius="15sp" />
 
             <Button
                 android:id="@+id/btnEqual"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="=" />
+                android:text="="
+                app:cornerRadius="15sp" />
         </LinearLayout>
     </LinearLayout>
 
