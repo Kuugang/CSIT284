@@ -1,10 +1,11 @@
 package com.example.androidprojectcollection;
 
+import android.media.audiofx.AutomaticGainControl;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.PriorityBlockingQueue;
-
 public class Calculator {
     public float calculate(String expression, boolean sequential) throws Exception{
         if(expression.equals(""))throw new Exception("Invalid input");
@@ -23,7 +24,7 @@ public class Calculator {
                 i--;
                 operands.push(Float.parseFloat(sb.toString()));
             }else{
-                if(sequential == true){
+                if(sequential){
                     while(!operators.isEmpty() && precedence(operators.peek()) <= precedence(current)){
                         evaluate(operands, operators);
                     }
@@ -32,7 +33,7 @@ public class Calculator {
                         evaluate(operands, operators);
                     }
                 }
-                operators.add(current);
+                operators.push(current);
             }
         }
 

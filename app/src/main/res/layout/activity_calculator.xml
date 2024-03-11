@@ -10,15 +10,18 @@
         android:id="@+id/screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="1dp">
 
         <TextView
             android:id="@+id/txtExpression"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight= "0.7"
+            android:layout_weight="0.7"
             android:textSize="30sp" />
 
         <TextView
@@ -35,7 +38,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight= "0.5"
+            android:layout_weight="0.5"
+            android:clipToPadding="false"
             android:orientation="horizontal">
 
             <Button
@@ -74,7 +78,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight= "0.5"
+            android:layout_weight="0.5"
             android:orientation="horizontal">
 
             <Button
@@ -113,7 +117,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight= "0.5"
+            android:layout_weight="0.5"
             android:orientation="horizontal">
 
             <Button
@@ -152,7 +156,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight= "0.5"
+            android:layout_weight="0.5"
             android:orientation="horizontal">
 
             <Button
@@ -191,7 +195,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight= "0.5"
+            android:layout_weight="0.5"
             android:orientation="horizontal">
 
             <Button

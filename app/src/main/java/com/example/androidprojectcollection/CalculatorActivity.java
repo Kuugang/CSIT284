@@ -59,13 +59,14 @@ public class CalculatorActivity extends AppCompatActivity {
                     Button b = (Button) view;
                     String buttonText = b.getText().toString();
                     expressionText.append(buttonText);
-                    try {
-                        float sequentialResult = calculator.calculate("" + expressionText.getText(), true);
-                        if(sequentialResult == (int)sequentialResult){
+
+                    try{
+                        float sequentialResult = calculator.calculate(expressionText.getText().toString(), true);
+                        if(sequentialResult == (int) sequentialResult){
                             resultText.setText(String.valueOf((int)sequentialResult));
-                            return;
+                        }else{
+                            resultText.setText(Float.toString(sequentialResult));
                         }
-                        resultText.setText(Float.toString(sequentialResult));
                     }catch (Exception e){
                         resultText.setText(e.getMessage());
                     }
@@ -78,16 +79,19 @@ public class CalculatorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Button b = (Button) view;
                 String buttonText = b.getText().toString();
-                String current = "" + expressionText.getText();
+                String current = expressionText.getText().toString();
+
                 if (current.length() > 0) {
                     char last = current.charAt(current.length() - 1);
                     if (last == '.') {
                         expressionText.setText(current.substring(0, current.length() - 1));
+                        isDot = false;
                     } else if (isDot == true) {
                         return;
+                    }else{
+                        expressionText.append(buttonText);
+                        isDot = true;
                     }
-                    expressionText.append(buttonText);
-                    isDot = true;
                 } else {
                     expressionText.append(buttonText);
                     isDot = true;
@@ -112,9 +116,10 @@ public class CalculatorActivity extends AppCompatActivity {
                     isDot = false;
                     Button b = (Button) view;
                     String buttonText = b.getText().toString();
-                    String current = "" + expressionText.getText();
-                    if(current == "") return;
+                    String current = expressionText.getText().toString();
+                    if(current.equals("")) return;
                     Character last = current.charAt(current.length() - 1);
+
                     if(last == '+' || last == '-' || last == '*' || last == '/' || last == '%'){
                         current = current.substring(0, current.length() - 1) + buttonText;
                         expressionText.setText(current);
